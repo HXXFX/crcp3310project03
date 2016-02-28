@@ -4,8 +4,19 @@ Table deathTable;
 Table recruitTable;
 
 final int ROW_NUMBER = 11;
+final int DEATH_INITAL_LOCX = 500;
+final int DEATH_INITAL_LOCY = 50;
+final int MAPPED_MIN = 1;
+final int MAPPED_MAX = 200;
+final int RECT_SIZE = 5;
+final int VERTICAL_NODE_DISTANCE = 70;
+
 
 int deathArray[] = new int[ROW_NUMBER];
+
+int deathMax;
+int deathMin;
+
 
 
 void setup()
@@ -13,16 +24,13 @@ void setup()
   size(1280, 720);
 
   deathTable = loadTable("USMilitaryDeath.csv");
-
   prepareDeathData();
-  prepareRecruitData();
-  prepareSaleData();
 }
 
 void draw()
 {
-  background(0);
-  drawDeathData();
+  //background(0);
+  drawDeath();
 }
 
 void prepareDeathData()
@@ -32,21 +40,55 @@ void prepareDeathData()
     deathArray[i] = deathTable.getInt(i, 1);
   }
   println(deathArray);
+  DeathMinAndMax();
 }
 
-void prepareRecruitData()
-{
-}
-
-void prepareSaleData()
-{
-}
-
-
-void drawDeathData()
-{
+void drawDeath()
+{ 
+  int mappedDeathArray[] = new int[ROW_NUMBER];
   for (int i = 0; i < 10; i++)
   {
-    rect(500 + deathArray[i], 50 + i * 20, 10, 10);
+    mappedDeathArray[i] = (int)map(deathArray[i], deathMin, deathMax, MAPPED_MIN, MAPPED_MAX);
   }
+  //draw line
+  line(DEATH_INITAL_LOCX + RECT_SIZE/2, DEATH_INITAL_LOCY + RECT_SIZE/2, DEATH_INITAL_LOCX + mappedDeathArray[1]+ RECT_SIZE/2, DEATH_INITAL_LOCY+ RECT_SIZE/2 + VERTICAL_NODE_DISTANCE);
+  for (int i = 0; i < 10; i++)
+  {
+    if (i > 1)
+    {
+      line(DEATH_INITAL_LOCX + mappedDeathArray[i-1]+ RECT_SIZE/2, DEATH_INITAL_LOCY + RECT_SIZE/2+ (i-1) *VERTICAL_NODE_DISTANCE, DEATH_INITAL_LOCX + mappedDeathArray[i]+ RECT_SIZE/2, DEATH_INITAL_LOCY+ RECT_SIZE/2 + i *VERTICAL_NODE_DISTANCE);
+    }
+  }
+  //draw rect node
+  for (int i = 0; i < 10; i++)
+  {
+    noStroke();
+    fill(0);
+    float mappedWidth = map(deathArray[i], deathMin, deathMax, MAPPED_MIN, MAPPED_MAX);
+    rect(DEATH_INITAL_LOCX + mappedWidth, DEATH_INITAL_LOCY + i * VERTICAL_NODE_DISTANCE, RECT_SIZE, RECT_SIZE);
+  }
+}
+
+void DeathMinAndMax()
+{
+  //find the Max 
+  deathMax = deathArray[0];
+  for (int i = 1; i < deathArray.length; i++)
+  { 
+    if (deathArray[i] > deathMax)
+    {
+      deathMax = deathArray[i];
+    }
+  }
+  println("The DeathMax:", deathMax);
+  //find the Min 
+  deathMin = deathArray[0];
+  for (int i = 1; i < deathArray.length; i++)
+  { 
+    if (deathArray[i] < deathMin)
+    {
+      deathMin = deathArray[i];
+    }
+  }
+  println("The deathMin:", deathMin);
 }
