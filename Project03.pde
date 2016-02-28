@@ -47,5 +47,6 @@ void drawDeathData()
 {
   for (int i = 0; i < 10; i++)
   {
+    rect(500 + deathArray[i], 50 + i * 20, 10, 10);
   }
 }
