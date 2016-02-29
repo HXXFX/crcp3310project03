@@ -1,5 +1,6 @@
 //big bad motherfucker
 
+PImage myBackground;
 Table saleTable;
 Table deathTable;
 Table recruitTable;
@@ -30,7 +31,7 @@ int recruitMin;
 void setup()
 {
   size(720, 1080);
-
+  myBackground = loadImage("StructuredDataBG.jpg");
   deathTable = loadTable("USMilitaryDeath.csv");
   saleTable = loadTable("CoDSale.csv");
   recruitTable = loadTable("USMilitaryRecruiting.csv");
@@ -43,6 +44,7 @@ void setup()
 void draw()
 {
   //background(0);
+  image(myBackground, 0, 0);
   drawDeath();
   drawSale();
   drawRecruit();
