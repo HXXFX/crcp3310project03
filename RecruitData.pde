@@ -1,3 +1,4 @@
+//fake class
 void prepareRecruitData()
 {
   for (int i = 0; i < ROW_NUMBER; i++)

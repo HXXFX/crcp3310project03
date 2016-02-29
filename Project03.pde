@@ -1,5 +1,13 @@
-//big bad motherfucker
+//CRCP3310 Project3
+//Zongxian Huang 
 
+/**********************************************************************************
+README: This data viz shows the relation between CoD sale number, 
+        US military death, and US military recruiting. Clike mouse 
+        to show the intel window. 
+***********************************************************************************/
+
+//GLOBAL JUNK########################################################################
 PImage myBackground;
 PImage myWindow;
 Table saleTable;
@@ -31,7 +39,7 @@ int recruitMin;
 int state;
 final int DRAW_B =0;
 final int DRAW_F = 1;
-
+//####################################################################################
 
 void setup()
 {
