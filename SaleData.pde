@@ -17,7 +17,7 @@ void drawSale()
     mappedSaleArray[i] = (int)map(saleArray[i], saleMin, saleMax, MAPPED_MIN, MAPPED_MAX);
   }
   //draw line
-  stroke(0);
+  stroke(0, 0, 225);
   line(SALE_INITAL_LOCX + RECT_SIZE/2, SALE_INITAL_LOCY + RECT_SIZE/2, SALE_INITAL_LOCX + mappedSaleArray[1]+ RECT_SIZE/2, SALE_INITAL_LOCY+ RECT_SIZE/2 + VERTICAL_NODE_DISTANCE);
   for (int i = 0; i < 10; i++)
   {

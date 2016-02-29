@@ -4,17 +4,17 @@ Table saleTable;
 Table deathTable;
 Table recruitTable;
 
-final int DEATH_INITAL_LOCX = 200;
-final int DEATH_INITAL_LOCY = 50;
-final int SALE_INITAL_LOCX = 500;
-final int SALE_INITAL_LOCY = 50;
-final int RECRUIT_INITAL_LOCX = 900;
-final int RECRUIT_INITAL_LOCY = 50;
+final int DEATH_INITAL_LOCX = 270;
+final int DEATH_INITAL_LOCY = 100;
+final int SALE_INITAL_LOCX = 270;
+final int SALE_INITAL_LOCY = 100;
+final int RECRUIT_INITAL_LOCX = 270;
+final int RECRUIT_INITAL_LOCY = 100;
 final int ROW_NUMBER = 11;
 final int MAPPED_MIN = 1;
 final int MAPPED_MAX = 200;
 final int RECT_SIZE = 5;
-final int VERTICAL_NODE_DISTANCE = 70;
+final int VERTICAL_NODE_DISTANCE = 100;
 
 int deathArray[] = new int[ROW_NUMBER];
 int saleArray[] = new int[ROW_NUMBER];
@@ -29,7 +29,7 @@ int recruitMin;
 
 void setup()
 {
-  size(1280, 720);
+  size(720, 1080);
 
   deathTable = loadTable("USMilitaryDeath.csv");
   saleTable = loadTable("CoDSale.csv");

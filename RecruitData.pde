@@ -17,7 +17,7 @@ void drawRecruit()
     mappedRecruitArray[i] = (int)map(recruitArray[i], recruitMin, recruitMax, MAPPED_MIN, MAPPED_MAX);
   }
   //draw line
-  stroke(0);
+  stroke(0, 225, 0);
   line(RECRUIT_INITAL_LOCX + RECT_SIZE/2, RECRUIT_INITAL_LOCY + RECT_SIZE/2, RECRUIT_INITAL_LOCX + mappedRecruitArray[1]+ RECT_SIZE/2, RECRUIT_INITAL_LOCY+ RECT_SIZE/2 + VERTICAL_NODE_DISTANCE);
   for (int i = 0; i < 10; i++)
   {

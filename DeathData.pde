@@ -17,7 +17,7 @@ void drawDeath()
     mappedDeathArray[i] = (int)map(deathArray[i], deathMin, deathMax, MAPPED_MIN, MAPPED_MAX);
   }
   //draw line
-  stroke(0);
+  stroke(225, 0, 0);
   line(DEATH_INITAL_LOCX + RECT_SIZE/2, DEATH_INITAL_LOCY + RECT_SIZE/2, DEATH_INITAL_LOCX + mappedDeathArray[1]+ RECT_SIZE/2, DEATH_INITAL_LOCY+ RECT_SIZE/2 + VERTICAL_NODE_DISTANCE);
   for (int i = 0; i < 10; i++)
   {
