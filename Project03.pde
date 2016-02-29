@@ -1,94 +1,49 @@
+//big bad motherfucker
 
 Table saleTable;
 Table deathTable;
 Table recruitTable;
 
-final int ROW_NUMBER = 11;
-final int DEATH_INITAL_LOCX = 500;
+final int DEATH_INITAL_LOCX = 200;
 final int DEATH_INITAL_LOCY = 50;
+final int SALE_INITAL_LOCX = 500;
+final int SALE_INITAL_LOCY = 50;
+final int RECRUIT_INITAL_LOCX = 900;
+final int RECRUIT_INITAL_LOCY = 50;
+final int ROW_NUMBER = 11;
 final int MAPPED_MIN = 1;
 final int MAPPED_MAX = 200;
 final int RECT_SIZE = 5;
 final int VERTICAL_NODE_DISTANCE = 70;
 
-
 int deathArray[] = new int[ROW_NUMBER];
+int saleArray[] = new int[ROW_NUMBER];
+int recruitArray[] = new int[ROW_NUMBER];
 
 int deathMax;
 int deathMin;
-
-
+int saleMax;
+int saleMin;
+int recruitMax;
+int recruitMin;
 
 void setup()
 {
   size(1280, 720);
 
   deathTable = loadTable("USMilitaryDeath.csv");
+  saleTable = loadTable("CoDSale.csv");
+  recruitTable = loadTable("USMilitaryRecruiting.csv");
+
   prepareDeathData();
+  prepareSaleData();
+  prepareRecruitData();
 }
 
 void draw()
 {
   //background(0);
   drawDeath();
-}
-
-void prepareDeathData()
-{
-  for (int i = 0; i < ROW_NUMBER; i++)
-  {
-    deathArray[i] = deathTable.getInt(i, 1);
-  }
-  println(deathArray);
-  DeathMinAndMax();
-}
-
-void drawDeath()
-{ 
-  int mappedDeathArray[] = new int[ROW_NUMBER];
-  for (int i = 0; i < 10; i++)
-  {
-    mappedDeathArray[i] = (int)map(deathArray[i], deathMin, deathMax, MAPPED_MIN, MAPPED_MAX);
-  }
-  //draw line
-  line(DEATH_INITAL_LOCX + RECT_SIZE/2, DEATH_INITAL_LOCY + RECT_SIZE/2, DEATH_INITAL_LOCX + mappedDeathArray[1]+ RECT_SIZE/2, DEATH_INITAL_LOCY+ RECT_SIZE/2 + VERTICAL_NODE_DISTANCE);
-  for (int i = 0; i < 10; i++)
-  {
-    if (i > 1)
-    {
-      line(DEATH_INITAL_LOCX + mappedDeathArray[i-1]+ RECT_SIZE/2, DEATH_INITAL_LOCY + RECT_SIZE/2+ (i-1) *VERTICAL_NODE_DISTANCE, DEATH_INITAL_LOCX + mappedDeathArray[i]+ RECT_SIZE/2, DEATH_INITAL_LOCY+ RECT_SIZE/2 + i *VERTICAL_NODE_DISTANCE);
-    }
-  }
-  //draw rect node
-  for (int i = 0; i < 10; i++)
-  {
-    noStroke();
-    fill(0);
-    float mappedWidth = map(deathArray[i], deathMin, deathMax, MAPPED_MIN, MAPPED_MAX);
-    rect(DEATH_INITAL_LOCX + mappedWidth, DEATH_INITAL_LOCY + i * VERTICAL_NODE_DISTANCE, RECT_SIZE, RECT_SIZE);
-  }
-}
-
-void DeathMinAndMax()
-{
-  //find the Max 
-  deathMax = deathArray[0];
-  for (int i = 1; i < deathArray.length; i++)
-  { 
-    if (deathArray[i] > deathMax)
-    {
-      deathMax = deathArray[i];
-    }
-  }
-  println("The DeathMax:", deathMax);
-  //find the Min 
-  deathMin = deathArray[0];
-  for (int i = 1; i < deathArray.length; i++)
-  { 
-    if (deathArray[i] < deathMin)
-    {
-      deathMin = deathArray[i];
-    }
-  }
-  println("The deathMin:", deathMin);
+  drawSale();
+  drawRecruit();
 }
