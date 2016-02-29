@@ -1,6 +1,7 @@
 //big bad motherfucker
 
 PImage myBackground;
+PImage myWindow;
 Table saleTable;
 Table deathTable;
 Table recruitTable;
@@ -27,11 +28,16 @@ int saleMax;
 int saleMin;
 int recruitMax;
 int recruitMin;
+int state;
+final int DRAW_B =0;
+final int DRAW_F = 1;
+
 
 void setup()
 {
   size(720, 1080);
   myBackground = loadImage("StructuredDataBG.jpg");
+  myWindow = loadImage("StructuredDataBGIntel.png");
   deathTable = loadTable("USMilitaryDeath.csv");
   saleTable = loadTable("CoDSale.csv");
   recruitTable = loadTable("USMilitaryRecruiting.csv");
@@ -43,9 +49,20 @@ void setup()
 
 void draw()
 {
-  //background(0);
+  if (state == DRAW_B)
+  {
   image(myBackground, 0, 0);
   drawDeath();
   drawSale();
   drawRecruit();
+  }
+  else
+  {
+  image(myWindow, 0, 0);
+  }
+}
+
+void mousePressed()
+{
+  state = (state + 1)% 2;
 }
